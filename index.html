@@ -1,0 +1,146 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title> Sotos Angular Material GridView</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="dist/css/sotos-angular-material-gridview.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular-aria.min.js"></script>
+    <script src="bower_components/hammerjs/hammer.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <script src="dist/js/sotos-angular-material-gridview.min.js"></script>
+    <script src="app.js"></script>
+<style>
+    sotos-list{
+    height: 420px;
+    display: block;
+    }
+    .sotos-list-items{
+    overflow:auto;
+    height: 350px;
+
+    }
+</style>
+</head>
+<body layout="horizontal" ng-controller="listCtrl">
+<material-sidenav layout="vertical" class="material-sidenav-left material-whiteframe-z3" component-id="left">
+    <material-toolbar class="material-theme-light material-medium-tall">
+        <h1 class="material-toolbar-tools" style="padding-top:25px;">
+            <a href="#" ng-click="goHome()" tabindex="0">Sotos<br>Angular Material GridView</a>
+        </h1>
+    </material-toolbar>
+
+    <material-content flex class="material-content-padding">
+    <h2>id : {{ item.id }}</h2>
+<div layout="vertical" >
+
+
+        <material-input-group >
+            <label for="item-title">Title</label>
+            <material-input id="item-title" ng-model="item.title"></material-input>
+        </material-input-group>
+        <material-input-group >
+            <label for="item-subtitle">Sub Title</label>
+            <material-input id="item-title" ng-model="item.subtitle"></material-input>
+        </material-input-group>
+        <material-input-group >
+            <label for="orderid">Order</label>
+            <material-input id="orderid" ng-model="item.orderid"></material-input>
+        </material-input-group>
+
+        <material-button ng-show="item.id==0" ng-click="addNew(item)"  class="material-button-raised material-button-colored">
+            Add Item
+        </material-button>
+
+        <material-button ng-show="item.id>0" ng-click="save(item)" class="material-button-raised material-button-colored material-theme-green">
+            Save
+        </material-button>
+</div>
+<div>
+
+<p>items</p>
+<p>{{ items | json }}</p>
+</div>
+    </material-content>
+    </material-sidenav>
+
+
+
+    <div layout="vertical" layout-fill  tabindex="-1" role="main" >
+        <material-toolbar  class="material-theme-dark material-medium-tall app-toolbar">
+        <div class="material-toolbar-tools" layout="horizontal">
+            <h1 flex><span>Demo List View</span> </h1>
+            <material-button flex="20" href="" class="material-button-raised material-button-colored material-theme-light-blue">
+               <i class="sgv-github"></i>  GitHub
+                </material-button>
+
+        </div>
+
+
+        </material-toolbar>
+        <material-content scroll-y="" flex >
+
+
+        <material-toolbar class="material-theme-orange material-medium-tall app-toolbar">
+
+
+            <h3  class="material-toolbar-tools">Without Headers</h3>
+
+
+        </material-toolbar>
+
+     <material-content scroll-y="" flex class="material-content-padding">
+         <p> $scope.items=[{id:0,title:'title 0',show:true,flex:5},{id:1,title:'title 2'...}
+             ];</p>
+                  <sotos-list items="items" ></sotos-list>
+     </material-content>
+
+        <material-toolbar class="material-theme-light-blue material-medium-tall app-toolbar">
+
+            <h3 class="material-toolbar-tools">With Headers</h3>
+
+        </material-toolbar>
+
+        <material-content scroll-y="" flex class="material-content-padding">
+            <p> $scope.items=[];<br>$scope.headers=[{id:'field name',header:'display name',show:true,flex:5,type:image || icon},{...}
+                ];</p>
+
+            <sotos-list items="items" headers-names="headers" showedit="true" on-edit="onEditBtn" ></sotos-list>
+        </material-content>
+
+            <material-toolbar class="material-theme-purple material-medium-tall app-toolbar">
+                <h3 class="material-toolbar-tools">With Headers and buttons enable</h3>
+            </material-toolbar>
+
+            <material-content scroll-y="" flex class="material-content-padding">
+                <p>&lt;sotos-list&nbsp;items=&quot;items&quot;&nbsp;headers-names=&quot;headers&quot;&nbsp;showdelete=&quot;true&quot;&nbsp;showedit=&quot;true&quot;&nbsp;on-edit=&quot;onEditBtn&quot;&nbsp;on-delete=&quot;onDeleteBtn&quot;&gt;&lt;/sotos-list&gt;</p>
+                <sotos-list items="items" headers-names="headers" showdelete="true" showedit="true" on-edit="onEditBtn" on-delete="onDeleteBtn"></sotos-list>
+            </material-content>
+
+
+            <material-toolbar class="material-theme-green material-medium-tall app-toolbar" >
+                <h3 class="material-toolbar-tools">With Type  </h3>
+            </material-toolbar>
+            <material-content scroll-y="" flex class="material-content-padding">
+              <sotos-list items="itemsReal" headers-names="headersReal"></sotos-list>
+            </material-content>
+
+
+
+            <material-toolbar class="material-theme-orange material-medium-tall app-toolbar">
+                <h3 class="material-toolbar-tools">Demo Test with parent_id to items</h3>
+            </material-toolbar>
+            <material-content scroll-y="" flex class="material-content-padding">
+            <p>{id:1, parent_id:0,title: ...},
+            <br>{id:2, parent_id:1,title: ...}</p>
+                <sotos-list-tree items="itemsParent"  ></sotos-list-tree>
+            </material-content>
+
+        </material-content>
+    </div>
+
+
+</body>
+</html>

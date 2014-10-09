@@ -1,0 +1,11 @@
+{
+  "name": "sotos-angular-materia-gridview",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular-material": "0.4.0"
+  },
+  "main": [
+    "sotos-angular-material-gridview.js",
+    "sotos-angular-material-gridview.css"
+  ]
+}

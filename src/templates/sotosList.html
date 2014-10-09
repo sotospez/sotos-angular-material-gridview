@@ -1,0 +1,46 @@
+<div class="sotos-list" layout="vertical" >
+<div class="sotos-list-header" layout="horizontal"  layout-align="start end">
+    <div class="header-text" flex="{{  header.flex}}"
+          ng-repeat="header in headers|filter:{show:true}"
+          ng-click="orderByField(header.id)">
+        {{ header.header }}
+        <i class="sgv-unsorted" ng-show="header.id!=orderbyitem"></i>
+        <i class="sgv-arrow-up" ng-show="header.id==orderbyitem && reverse==true"></i>
+        <i class="sgv-arrow-down" ng-show="header.id==orderbyitem && reverse==false"></i>
+    </div>
+    <div flex="20" class="search-area" layout="horizontal" layout-align="center center">
+        <!-- Single button -->
+        <div class="header-list-check btn-group" >
+            <material-button  class="material-button-fab btn-list-check " ng-click="dropOpen=!dropOpen"><i class="sgv-eye"></i></material-button>
+            <div class="dropdown material-whiteframe-z1" role="menu" layout="vertical" ng-class="{open:dropOpen}">
+                <div ng-repeat="header in headers" >
+                    <material-checkbox ng-model="header.show" aria-label="{{ header.header }}">
+                        {{ header.header }}
+                    </material-checkbox>
+                </div>
+            </div>
+        </div>
+        <material-input-group class="input-group material-input-group-theme-green">
+         <label>search.. <i class="sgv-search"></i></label>
+        <material-input type="text" ng-model="search" ></material-input>
+    </material-input-group>
+    </div>
+</div>
+</div>
+<div class="sotos-list-items" >
+<div  layout="vertical"  >
+<div class="sotos-list-item animlist"
+     ng-repeat="item in items| orderBy:orderbyitem:reverse  | filter:search"
+     ng-class-odd="'odd'"
+     ng-class-even="'even'"
+     layout="horizontal"
+     layout-align="start center" >
+       <sotos-list-item  flex="{{  header.flex}}" item="item" ng-repeat="header in headers|filter:{show:true}" name="header.id" type="{{ header.type  }}" >
+    </sotos-list-item>
+    <div flex="20" class="buttons" layout="horizontal"  layout-align="end">
+        <material-button flex="50" ng-show="showDelete" ng-click="delete(item)"  class="material-button-raised material-theme-red"><i class="sgv-delete"></i> Delete</material-button>
+        <material-button flex="50" ng-show="showEdit" ng-click="edit(item)" class="   material-button-raised material-theme-light-blue"><i class="sgv-edit"></i> Edit</material-button>
+    </div>
+</div>
+</div>
+</div>
