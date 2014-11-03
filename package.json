@@ -1,7 +1,7 @@
 {
   "name": "sotos-angular-material-gridview",
-  "version": "0.0.1",
-  "description": "angular directive gridview list of array items",
+  "version": "0.0.2",
+  "description": "angular directive gridview list of array items ",
   "link":"http://sotos.gr/demos/angular-material-gridview/",
   "license":"MIT",
   "dependencies": {},

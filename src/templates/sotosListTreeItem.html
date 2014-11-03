@@ -1,17 +1,23 @@
-    <div  class="sotos-list-item animlist " ng-init="level=level+1"
-          ng-repeat="item in items | orderBy:orderbyitem:reverse  | filter:{parent_id:parent} | filter:search">
-<div  class="row-item level-{{ level }}" layout="horizontal" layout-align="start center" >
-    <sotos-list-item  flex="{{  header.flex}}" item="item" ng-repeat="header in headers|filter:{show:true}" name="header.id">
-    </sotos-list-item>
+<md-list ng-init="level=level+1">
+    <md-item  ng-repeat="item in items| orderBy:orderbyitem:reverse | filter:{parent_id:parent} | filter:search"
+            >
+        <md-item-content class="row-item level-{{ level }}"  layout="horizontal" layout-align="start center"  ng-class-odd="'odd'" ng-class-even="'even'"  >
 
-    <div ng-init="parent=item.id" flex="20" class=" buttons" layout="horizontal"  layout-align="end">
-        <material-button flex="50" ng-show="showDelete" ng-click="delete(item)"  class="material-button-raised material-theme-red"><i class="sgv-delete"></i> Delete</material-button>
-        <material-button flex="50" ng-show="showEdit" ng-click="edit(item)" class="material-button-raised material-theme-light-blue"><i class="sgv-edit"></i> Edit</material-button>
-    </div>
+            <sotos-list-item  flex="{{  header.flex}}" item="item" ng-repeat="header in headers|filter:{show:true}" name="header.id" type="{{ header.type  }}" >
+            </sotos-list-item>
 
 
-</div >
+            <div flex="15" class=" buttons" layout="horizontal"  layout-align="end" ng-init="parent=item.id">
+                <md-button flex ng-show="showEdit"  ng-click="edit(item)"   class="md-primary"><i class="sgv-edit"></i> Edit</md-button>
+                <md-button flex  ng-show="showDelete" ng-click="delete(item)"    class=" md-warn"><i class="sgv-delete"></i> Delete</md-button>
+            </div>
 
-        <div class="child" ng-include="'templates/sotosListTreeItem.html'"></div>
+        </md-item-content>
 
-</div>
+        <md-divider ></md-divider>
+        <div  class="child" ng-include="'templates/sotosListTreeItem.html'"></div>
+    </md-item>
+
+
+</md-list>
+

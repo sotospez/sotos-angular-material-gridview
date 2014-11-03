@@ -11,54 +11,53 @@ width: 100%;
 }
 
 
-.sotos-list{
 
 
-   .header-text{
 
-   margin-bottom: 5px;
-   font-size: 20px;
+.even{
+  background:#f5f5f5 ;
+
+}
+.list-search {
+  overflow: hidden;
+}
 
 
-     .sgv-unsorted{
-       @include transition(opacity 0.3s ease-in-out );
-       @include opacity(0);
-     }
+md-button.md-fab.list-btn-more{
+  width: 40px;
+  height: 40px;
 
-   }
+  &.isopen{
+    margin-bottom: -10px;
 
-  .header-text:hover{
-    cursor: pointer;
-    .sgv-unsorted{
-      @include opacity(1);
-    }
-  }
-
-  .sotos-list-header{
-    min-height:70px ;
-    border-bottom: 1px #dedede  solid;
-
-    label{
-    float:right;
-    }
+    @include transition(margin 0.3s ease-in-out );
 
   }
-  .btn-list-check{
-    width: 30px;
-    height: 30px;
-    @include box-shadow(none);
-    padding: 0;
-    margin-right: 10px;
-    margin-top: 20px;
 
-    .sgv-eye{
-      padding: 1px;
-      display: block;
+}
 
-    }
+.list-menu{
+  position: absolute;
+  z-index: 1;
+  color: #000;
+}
+
+.md-toolbar-tools{
+
+
+md-button:hover{
+  //cursor: pointer;
+  .sgv-unsorted{
+    @include opacity(1);
   }
+}
 
+.sgv-unsorted{
+  @include transition(opacity 0.3s ease-in-out );
+  @include opacity(0);
+}
 
+}
 
 
 
@@ -78,17 +77,16 @@ width: 100%;
     @include opacity(1);
   }
 
+
+
+.child{
+  margin-left: 10px;
 }
 
-
-.sotos-list-items{
-
-  .sotos-list-item{
-
-
+sotos-list-item{
 
     padding: 2px;
-    border-bottom: 1px #dedede  solid;
+   // border-bottom: 1px #dedede  solid;
     @include transition(background 0.3s ease-in-out );
 
     img{
@@ -98,44 +96,9 @@ width: 100%;
     padding: 2px;
     }
 
-    .buttons{
-      @include transition(opacity 0.3s ease-in-out );
-      @include opacity(0);
-    //  overflow: hidden;
-    // max-height: 0px;
-      material-button{
-        margin-right: 5px;
-        margin-left: 5px;
-      }
-    }
-
-
-    .child{
-    margin-left: 10px;
-    }
   }
 
 
-  .sotos-list-item:hover{
-
-    background: #dcdcdc!important;
-
-    .row-item:hover{
-      background:#4285f4!important;
-      color: #fff;
-    }
-
-    .buttons{
-      @include opacity(1);
-    //  max-height: 100px;
-    }
-  }
-  .sotos-list-item.even{
-    background: #f5f5f5;
-
-
-  }
-}
 
 
 
@@ -144,7 +107,7 @@ width: 100%;
   .animlist.ng-enter,.animlist.ng-move {
     @include transition(0.4s cubic-bezier(0.000, 0.000, 0.580, 1.000) all );
     @include opacity(0);
-
+     //     display: block;
     max-height: 0px;
     padding: 0;
     bottom: -80px;

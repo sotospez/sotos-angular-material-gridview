@@ -1,46 +1,47 @@
-<div class="sotos-list" layout="vertical" >
-<div class="sotos-list-header" layout="horizontal"  layout-align="start end">
-    <div class="header-text" flex="{{  header.flex}}"
-          ng-repeat="header in headers|filter:{show:true}"
-          ng-click="orderByField(header.id)">
-        {{ header.header }}
-        <i class="sgv-unsorted" ng-show="header.id!=orderbyitem"></i>
-        <i class="sgv-arrow-up" ng-show="header.id==orderbyitem && reverse==true"></i>
-        <i class="sgv-arrow-down" ng-show="header.id==orderbyitem && reverse==false"></i>
-    </div>
-    <div flex="20" class="search-area" layout="horizontal" layout-align="center center">
-        <!-- Single button -->
-        <div class="header-list-check btn-group" >
-            <material-button  class="material-button-fab btn-list-check " ng-click="dropOpen=!dropOpen"><i class="sgv-eye"></i></material-button>
-            <div class="dropdown material-whiteframe-z1" role="menu" layout="vertical" ng-class="{open:dropOpen}">
-                <div ng-repeat="header in headers" >
-                    <material-checkbox ng-model="header.show" aria-label="{{ header.header }}">
-                        {{ header.header }}
-                    </material-checkbox>
-                </div>
-            </div>
+<md-toolbar class="md-theme-light-blue ">
+    <div class="md-toolbar-tools  " layout="horizontal"  layout-align="start">
+        <md-button flex="{{  header.flex}}"   ng-repeat="header in headers|filter:{show:true}"
+                   ng-click="orderByField(header.id)">
+            {{ header.header }}
+            <i class="sgv-unsorted" ng-show="header.id!=orderbyitem"></i>
+            <i class="sgv-arrow-up" ng-show="header.id==orderbyitem && reverse==true"></i>
+            <i class="sgv-arrow-down" ng-show="header.id==orderbyitem && reverse==false"></i>
+        </md-button>
+        <div  flex="5"  >
+            <md-button  class="md-fab md-primary list-btn-more" ng-class="{isopen:listmenu}" ng-click="listmenu=!listmenu"><i class="sgv-eye"></i></md-button>
+            <md-content ng-show="listmenu" class=" md-whiteframe-z2 list-menu ">
+                <md-list  role="menu">
+                    <md-item   ng-repeat="header in headers">
+                        <md-item-content layout="horizontal" layout-align="start center">
+                            <md-checkbox ng-model="header.show" aria-label="{{ header.header }}">
+                                {{ header.header }}
+                            </md-checkbox>
+                        </md-item-content>
+                    </md-item>
+                </md-list>
+            </md-content>
         </div>
-        <material-input-group class="input-group material-input-group-theme-green">
-         <label>search.. <i class="sgv-search"></i></label>
-        <material-input type="text" ng-model="search" ></material-input>
-    </material-input-group>
+        <div flex="10" class="list-search " >
+            <md-text-float  class=" md-input-group-theme-light " flex="5" label="search.." ng-model="search" ></md-text-float>
+        </div>
     </div>
-</div>
-</div>
-<div class="sotos-list-items" >
-<div  layout="vertical"  >
-<div class="sotos-list-item animlist"
-     ng-repeat="item in items| orderBy:orderbyitem:reverse  | filter:search"
-     ng-class-odd="'odd'"
-     ng-class-even="'even'"
-     layout="horizontal"
-     layout-align="start center" >
-       <sotos-list-item  flex="{{  header.flex}}" item="item" ng-repeat="header in headers|filter:{show:true}" name="header.id" type="{{ header.type  }}" >
-    </sotos-list-item>
-    <div flex="20" class="buttons" layout="horizontal"  layout-align="end">
-        <material-button flex="50" ng-show="showDelete" ng-click="delete(item)"  class="material-button-raised material-theme-red"><i class="sgv-delete"></i> Delete</material-button>
-        <material-button flex="50" ng-show="showEdit" ng-click="edit(item)" class="   material-button-raised material-theme-light-blue"><i class="sgv-edit"></i> Edit</material-button>
-    </div>
-</div>
-</div>
-</div>
+</md-toolbar>
+<md-content layout-padding>
+    <md-list>
+        <md-item  ng-repeat="item in items| orderBy:orderbyitem:reverse  | filter:search" >
+            <md-item-content layout="horizontal" layout-align="start center"  ng-class-odd="'odd'" ng-class-even="'even'"  >
+                <sotos-list-item  flex="{{  header.flex}}" item="item" ng-repeat="header in headers|filter:{show:true}" name="header.id" type="{{ header.type  }}" >
+                </sotos-list-item>
+                <div flex="15" class=" buttons" layout="horizontal"  layout-align="end">
+                    <md-button flex ng-show="showEdit"  ng-click="edit(item)"   class="md-primary"><i class="sgv-edit"></i> Edit</md-button>
+                    <md-button flex  ng-show="showDelete" ng-click="delete(item)"    class=" md-warn"><i class="sgv-delete"></i> Delete</md-button>
+                </div>
+            </md-item-content>
+            <md-divider ></md-divider>
+        </md-item>
+
+    </md-list>
+</md-content>
+
+
+

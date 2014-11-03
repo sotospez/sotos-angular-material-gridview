@@ -29,7 +29,14 @@ angular.element(window).ready(function() {
 
 
 
-app.controller('listCtrl',['$scope','$http', function ($scope,$http) {
+app.controller('listCtrl',['$scope','$http','$mdSidenav', function ($scope,$http, $mdSidenav) {
+
+    $scope.openLeftMenu = function(){
+        $mdSidenav('left').toggle();
+
+
+    };
+
 
     $scope.item={id:0};
     $scope.headers=[
