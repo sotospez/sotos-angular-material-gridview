@@ -4,6 +4,10 @@ sotos-angular-material-gridview
 angular directive for make lists with filters and order
 
 ###v0.0.1
+
+###v0.0.2
+support md-* (material ver 0.5.1)
+
 ```
 list view
 <sotos-list items="items" headers-names="headers" showdelete="true" showedit="true" on-edit="onEditBtn" on-delete="onDeleteBtn"></sotos-list>
